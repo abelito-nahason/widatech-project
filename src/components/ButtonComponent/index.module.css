@@ -1,0 +1,13 @@
+.button {
+    width: 200px;
+    background-color: #f1f1f1;
+    height:40px;
+    border-radius: 30px;
+    border: 0.5px solid black;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.button:hover {
+    background-color: #f9f9f9;
+    transition: 200ms ease-in;
+}

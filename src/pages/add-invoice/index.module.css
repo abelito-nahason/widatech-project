@@ -1,0 +1,29 @@
+.page {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.form{
+    display:flex;
+    width: 75%;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.hook-form{
+    display:flex;
+    flex-direction: column;
+}
+
+.button-container{
+    display: flex;
+    justify-content: end;
+}
+
+.button {
+    margin-top: 25px;
+}
