@@ -28,7 +28,7 @@ export namespace InvoiceModel {
             transactionDate: string().required(),
             customerName: string().required(),
             salesName: string().required(),
-            notes: string().required(),
+            notes: string().defined().strict(true),
             products:array().of(object({
                 productId: string().required(),
                 productName: string().required(),

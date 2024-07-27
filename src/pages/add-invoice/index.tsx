@@ -17,9 +17,9 @@ import { useEffect, useState } from "react"
 
 const AddInvoice = () => {
     const [modal, setModal] = useState(false)
-    const selector = useSelector<StoreRootState>((state)=> state.addInvoice.loading)
+    const selector = useSelector((state:StoreRootState)=> state.addInvoice)
     const dispatch = useDispatch<StoreDispatch>()
-    const {register, handleSubmit, formState:{errors}, setValue, watch} = useForm<InvoiceModel.Request.AddInvoice>({
+    const {register, handleSubmit, formState:{errors}, resetField,  setValue, watch} = useForm<InvoiceModel.Request.AddInvoice>({
         defaultValues: {
             customerName: '',
             notes: '',
@@ -35,9 +35,16 @@ const AddInvoice = () => {
         dispatch(addInvoice(data))
     }
 
+    console.log(selector)
+
     useEffect(()=> {
-        if(selector === 'succeeded') setModal(true)
-    },[selector])
+        if(selector.loading === 'succeeded') setModal(true)
+        setValue('products', [])
+        resetField('notes')
+        resetField('customerName')
+        resetField('transactionDate')
+        resetField('salesName')
+    },[selector.loading])
 
     return(
         <div className={styles.page}>

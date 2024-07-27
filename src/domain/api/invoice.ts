@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { InvoiceModel } from "../models/invoice";
 import InvoiceRepository from "../repository/invoice";
 
@@ -13,10 +13,10 @@ export default class InvoiceAPI implements InvoiceRepository {
             return response.data
         } catch (error:any) {
             console.error(error)
-            return {
-                message: error.response.data.message || 'Unknown Error'
-            } 
-            // throw new AxiosError(error.response.data.message || 'Unknown Error')
+            // return {
+            //     message: error.response.data.message || 'Unknown Error'
+            // } 
+            throw new AxiosError(error.response.data.message || 'Unknown Error')
         }
     }
 
