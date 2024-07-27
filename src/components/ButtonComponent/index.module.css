@@ -11,3 +11,8 @@
     background-color: #f9f9f9;
     transition: 200ms ease-in;
 }
+
+.button[aria-disabled] {
+    pointer-events: none;
+    opacity: 0.5;
+}

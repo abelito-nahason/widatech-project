@@ -1,9 +1,10 @@
-import { object, string } from "yup";
+import { array, number, object, string } from "yup";
 
 export namespace InvoiceModel {
     export namespace Request {
 
         export interface Product {
+            productId:string;
             productName:string;
             productStock:number;
             productPictureSrc:string;
@@ -15,8 +16,12 @@ export namespace InvoiceModel {
             customerName:string;
             salesName:string;
             notes:string;
-            products:string;
-            // products:Array<Product>;
+            products:Array<{
+                productId:string;
+                productName:string;
+                productStock:number;
+                productPrice:number;
+            }>;
         }
 
         export const invoiceSchema = object({
@@ -24,8 +29,14 @@ export namespace InvoiceModel {
             customerName: string().required(),
             salesName: string().required(),
             notes: string().required(),
-            products:string().required()
+            products:array().of(object({
+                productId: string().required(),
+                productName: string().required(),
+                productStock: number().required(),
+                productPrice: number().required()
+            })).required().min(1)
         })
+
     }
     export namespace Response {
         export interface GenericActionResponse {

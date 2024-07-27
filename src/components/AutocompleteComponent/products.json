@@ -1,0 +1,30 @@
+[
+    {
+        "productId": "PRD001",
+        "productName" : "Bluetooth speaker",
+        "productStock" : 2,
+        "productPictureSrc" : "/product_speaker.jpeg",
+        "productPrice" : 500000
+    },
+    {
+        "productId": "PRD002",
+        "productName" : "Headphone",
+        "productStock" : 5,
+        "productPictureSrc" : "/product_headphone.jpg",
+        "productPrice" : 500000
+    },
+    {
+        "productId": "PRD003",
+        "productName" : "Laptop Charger",
+        "productStock" : 10,
+        "productPictureSrc" : "/product_charger.jpeg",
+        "productPrice" : 200000
+    },
+    {
+        "productId": "PRD004",
+        "productName" : "LCD Monitor",
+        "productStock" : 2,
+        "productPictureSrc" : "/product_lcd_monitor.jpg",
+        "productPrice" : 600000
+    }
+]
