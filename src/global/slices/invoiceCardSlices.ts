@@ -2,6 +2,7 @@ import { AsyncThunk, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { InvoiceModel } from "../../domain/models/invoice";
 import InvoiceUseCase from "../../domain/usecase/invoice";
 import InvoiceAPI from "../../domain/api/invoice";
+import { ThunkLoadingStates } from "../store";
 
 
 const repo = new InvoiceUseCase(new InvoiceAPI())
@@ -17,8 +18,7 @@ export const getInvoiceCards:AsyncThunk<InvoiceModel.Response.GetInvoiceCards, I
 
 type InitialState = {
     result: InvoiceModel.Response.GetInvoiceCards;
-    loading: 'idle' | 'pending' | 'succeeded' | 'failed';
-}
+} & ThunkLoadingStates
 
 const initialState:InitialState = {
     loading: 'idle',

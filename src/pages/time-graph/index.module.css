@@ -1,0 +1,19 @@
+.navigator{
+    display: flex;
+    gap: 1rem;
+}
+
+.navigator-pages{
+    font-weight: 600;
+}
+
+.navigator-pages:hover{
+    opacity: 0.7;
+    scale: 1.1;
+}
+
+.navigator-pages[aria-disabled=true] {
+    opacity: 0.5;
+    pointer-events: none;
+    font-weight: 400;
+}

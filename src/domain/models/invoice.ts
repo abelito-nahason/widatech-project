@@ -42,6 +42,10 @@ export namespace InvoiceModel {
             pageSize:number;
         }
 
+        export interface GetInvoiceGraph {
+            mode:string
+        }
+
     }
     export namespace Response {
         export interface GenericActionResponse {
@@ -58,6 +62,13 @@ export namespace InvoiceModel {
                 total_amount:number;
             }[];
             totalRows:number;
+        }
+
+        export interface GetInvoiceGraph {
+            result: {
+                unit:string;
+                revenue:string;
+            }[]
         }
     }
 }

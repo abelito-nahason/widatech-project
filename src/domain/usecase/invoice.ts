@@ -12,4 +12,8 @@ export default class InvoiceUseCase implements InvoiceRepository {
     async getInvoiceCards(data: InvoiceModel.Request.GetInvoiceCards): Promise<InvoiceModel.Response.GetInvoiceCards> {
         return this.repository.getInvoiceCards(data)
     }
+
+    async getInvoiceGraph(data: InvoiceModel.Request.GetInvoiceGraph): Promise<InvoiceModel.Response.GetInvoiceGraph> {
+        return this.repository.getInvoiceGraph(data)
+    }
 }

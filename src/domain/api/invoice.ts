@@ -28,7 +28,18 @@ export default class InvoiceAPI implements InvoiceRepository {
             console.error(error)
             throw new AxiosError(error.response.data.message || 'Unknown Error')
         }
+    }
 
+    async getInvoiceGraph(data: InvoiceModel.Request.GetInvoiceGraph): Promise<InvoiceModel.Response.GetInvoiceGraph> {
+        try {
+            const urlParams = new URL(`${this.api}/invoice/chart`)
+            urlParams.searchParams.append('mode', data.mode)
+            const response = await axios.get(urlParams.toString())
+            return response.data
+        } catch (error:any) {
+            console.error(error)
+            throw new AxiosError(error.response.data.message || 'Unknown Error')
+        }
     }
 
 }

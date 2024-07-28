@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AddInvoice from './pages/add-invoice'
 import PagePresetComponent from './components/PagePresetComponent'
 import InvoiceCard from './pages/invoice-card'
+import TimeGraphPage from './pages/time-graph'
   export const pagesList = [
     {
       path: '/',
@@ -16,7 +17,7 @@ import InvoiceCard from './pages/invoice-card'
     {
       path: '/graph',
       name: 'Invoice Graph',
-      element:<h1>graph</h1>
+      element:<TimeGraphPage/>
     },
   ]
 
