@@ -9,7 +9,7 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import AutocompleteComponent from "../../components/AutocompleteComponent"
 import { StoreDispatch, StoreRootState } from "../../global/store"
 import { useDispatch, useSelector } from "react-redux"
-import { addInvoice } from "../../global/slices/addInvoiceSlices"
+import { addInvoice, resetPopup } from "../../global/slices/addInvoiceSlices"
 import PresetModal from "../../components/PresetModal"
 import { useEffect, useState } from "react"
 
@@ -18,6 +18,9 @@ import { useEffect, useState } from "react"
 const AddInvoice = () => {
     const [modal, setModal] = useState(false)
     const selector = useSelector((state:StoreRootState)=> state.addInvoice)
+
+    
+    
     const dispatch = useDispatch<StoreDispatch>()
     const {register, handleSubmit, formState:{errors}, resetField,  setValue, watch} = useForm<InvoiceModel.Request.AddInvoice>({
         defaultValues: {
@@ -31,32 +34,32 @@ const AddInvoice = () => {
     })
 
     const submitForm:SubmitHandler<InvoiceModel.Request.AddInvoice> = (data) => {
-        console.log(data)
         dispatch(addInvoice(data))
     }
 
-    console.log(selector)
-
     useEffect(()=> {
-        if(selector.loading === 'succeeded') setModal(true)
-        setValue('products', [])
-        resetField('notes')
-        resetField('customerName')
-        resetField('transactionDate')
-        resetField('salesName')
+        if(selector.loading === 'succeeded') {
+            setModal(true)
+            dispatch(resetPopup())
+            setValue('products', [])
+            resetField('notes')
+            resetField('customerName')
+            resetField('transactionDate')
+            resetField('salesName')
+        } 
+        
     },[selector.loading])
 
     return(
-        <div className={styles.page}>
-            <PresetModal open={modal} onClose={()=>setModal(false)}>
-                <>
-                    <h1>Success</h1>
-                    <p>Success adding data</p>
-                    <ButtonComponent text="Dismiss" onClick={()=> setModal(false)}/>
-                </>
-            </PresetModal>
+            <>
+                <PresetModal open={modal} onClose={()=>setModal(false)}>
+                    <>
+                        <h1>Success</h1>
+                        <p>Success adding data</p>
+                        <ButtonComponent text="Dismiss" onClick={()=> setModal(false)}/>
+                    </>
+                </PresetModal>
 
-            <PaperComponent stackStyles={styles.form}>
                 <form className={styles['hook-form']} onSubmit={handleSubmit(submitForm)}>  
                     <h1>Add Invoice</h1>
                     
@@ -77,14 +80,13 @@ const AddInvoice = () => {
                         value={watch('products')}
                         setValue={setValue}
                         errortext={errors.products?.message}
-                    />
+                        />
 
                     <div className={styles['button-container']}>
                         <ButtonComponent stackedStyles={styles.button} type="submit" text="Submit"/>
                     </div>
                 </form>
-            </PaperComponent>
-        </div>
+            </>
     )
 
 }

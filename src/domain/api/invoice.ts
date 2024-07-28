@@ -13,11 +13,22 @@ export default class InvoiceAPI implements InvoiceRepository {
             return response.data
         } catch (error:any) {
             console.error(error)
-            // return {
-            //     message: error.response.data.message || 'Unknown Error'
-            // } 
             throw new AxiosError(error.response.data.message || 'Unknown Error')
         }
+    }
+
+    async getInvoiceCards(data: InvoiceModel.Request.GetInvoiceCards): Promise<InvoiceModel.Response.GetInvoiceCards> {
+        try {
+            const urlParams = new URL(`${this.api}/invoice`)
+            urlParams.searchParams.append('page', data.page.toString())
+            urlParams.searchParams.append('pageSize', data.pageSize.toString())
+            const response = await axios.get(urlParams.toString())     
+            return response.data
+        } catch (error:any) {
+            console.error(error)
+            throw new AxiosError(error.response.data.message || 'Unknown Error')
+        }
+
     }
 
 }

@@ -37,10 +37,27 @@ export namespace InvoiceModel {
             })).required().min(1)
         })
 
+        export interface GetInvoiceCards {
+            page:number;
+            pageSize:number;
+        }
+
     }
     export namespace Response {
         export interface GenericActionResponse {
             message:string;
+        }
+
+        export interface GetInvoiceCards {
+            result: {
+                invoice_no:number;
+                transaction_date:string;
+                salesperson:string;
+                customer:string;
+                notes:string;
+                total_amount:number;
+            }[];
+            totalRows:number;
         }
     }
 }

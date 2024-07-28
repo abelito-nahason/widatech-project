@@ -1,4 +1,4 @@
-import { AsyncThunk, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { AsyncThunk, createAsyncThunk, createSlice, ThunkAction } from "@reduxjs/toolkit";
 import InvoiceUseCase from "../../domain/usecase/invoice";
 import InvoiceAPI from "../../domain/api/invoice";
 import { InvoiceModel } from "../../domain/models/invoice";
@@ -27,10 +27,14 @@ const initialState:InitialState = {
 const invoiceSlice = createSlice({
     name:"invoices",
     initialState,
-    reducers: {},
+    reducers: {
+        resetPopup(state) {
+            state.loading = 'pending'
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(addInvoice.fulfilled, (state,action) => {
-            state.loading = 'succeeded',
+            state.loading = 'succeeded', // to make pop-up to show briefly
             state.message = action.payload
         })
 
@@ -44,5 +48,7 @@ const invoiceSlice = createSlice({
         })
     }
 })
+
+export const {resetPopup} = invoiceSlice.actions
 
 export default invoiceSlice.reducer

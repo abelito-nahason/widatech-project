@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import addInvoiceReducer from "../slices/addInvoiceSlices";
+import invoiceCardSlices from "../slices/invoiceCardSlices";
 
 const store = configureStore({
     reducer: {
-        addInvoice: addInvoiceReducer
+        addInvoice: addInvoiceReducer,
+        invoiceCards: invoiceCardSlices
     }
 });
 
